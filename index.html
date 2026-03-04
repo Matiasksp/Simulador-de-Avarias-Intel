@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <title>Simulador de Avarias Intel</title>
 
-    <!-- IMPORTAÇÃO CORRETA DO RUFFLE -->
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 
     <style>
@@ -15,21 +14,38 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
 
-        ruffle-player {
+        #container {
             width: 900px;
             height: 700px;
             max-width: 100%;
+            max-height: 100%;
         }
     </style>
 </head>
 <body>
 
-    <!-- O TEU JOGO -->
-    <ruffle-player>
-        00000003.swf
-    </ruffle-player>
+    <div id="container"></div>
+
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("load", (event) => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("container");
+            container.appendChild(player);
+
+            // CONFIGURAÇÃO DO JOGO
+            player.load({
+                url: "00000003.swf", // O nome do teu ficheiro principal
+                allowScriptAccess: true,
+                autoplay: "on",
+                unmuteOverlay: "hidden"
+            });
+        });
+    </script>
 
 </body>
 </html>
