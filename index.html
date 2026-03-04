@@ -1,21 +1,48 @@
-﻿<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <title>Simulador de Defeitos da Intel</title>
-    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-    <style>
-        body {
-            background: #111;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Simulador de Defeitos da Intel</title>
+  <!-- Ruffle (polyfill) a partir do unpkg, carregado no <head> -->
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background:#111;
+      color:#eee;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    .wrap {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+    /* Ajusta aqui as dimensões do jogo */
+    ruffle-player, .rf-container {
+      width: 900px;   /* <- aumenta/diminui consoante o jogo */
+      height: 700px;  /* <- idem */
+      max-width: 100%;
+    }
+  </style>
 </head>
 <body>
-    <embed src="00000003.swf" width="900" height="700" />
+  <div class="wrap">
+    <!-- Método recomendado: <ruffle-player> -->
+    <ruffle-player class="rf-container" autoplay>
+      <!-- Nome exato do SWF principal -->
+      0000000003.swf
+    </ruffle-player>
+  </div>
+
+  <!-- Fallback opcional com <object>, útil em alguns casos de paths -->
+  <noscript>
+    <div style="text-align:center;color:#fff">
+      Este jogo necessita de JavaScript para correr com o Ruffle.
+    </div>
+  </noscript>
 </body>
 </html>
