@@ -2,14 +2,16 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8" />
-    <title>Simulador de Avarias Intel</title>
+    <title>Simulador de Avarias Intel - Versão Corrigida</title>
 
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 
     <style>
+        /* Define um fundo preto e remove as margens */
         body {
             background: #000;
             margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,11 +19,23 @@
             overflow: hidden;
         }
 
+        /* O contentor agora usa a proporção do Flash para maximizar o tamanho mantendo a forma */
         #container {
-            width: 900px;
-            height: 700px;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Garante que o player do Ruffle em si preenche o contentor, mantendo a proporção */
+        #container > * {
             max-width: 100%;
             max-height: 100%;
+            /* Pode ajustar a proporção base aqui se 4:3 não for ideal, 
+               mas parece ser a correta para este tipo de jogo antigo */
+            aspect-ratio: 4 / 3; 
         }
     </style>
 </head>
@@ -37,10 +51,20 @@
             const container = document.getElementById("container");
             container.appendChild(player);
 
-            // CONFIGURAÇÃO DO JOGO
+            // CONFIGURAÇÃO DO JOGO - CORRIGIDA
             player.load({
-                url: "00000003.swf", // O nome do teu ficheiro principal
+                url: "00000003.swf", // O ficheiro principal
+
+                // Configurações críticas para carregar os recursos externos
                 allowScriptAccess: true,
+                allowNetworking: "all", // Permite que o SWF comunique com os ficheiros XML/Imagens
+                
+                // Configurações visuais adicionais
+                quality: "best", // Melhora a qualidade das imagens
+                scale: "showAll", // Ajusta a imagem mantendo a proporção
+                wmode: "direct", // Pode ajudar na performance e renderização
+
+                // Opções que já tinhas
                 autoplay: "on",
                 unmuteOverlay: "hidden"
             });
