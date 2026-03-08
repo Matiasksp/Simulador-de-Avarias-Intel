@@ -45,31 +45,31 @@
 
     <script>
         window.RufflePlayer = window.RufflePlayer || {};
+        
+        // Esta é a configuração global para forçar a compatibilidade de carateres
+        window.RufflePlayer.config = {
+            "forceScale": true,
+            "forceCodePage": true, // <--- ESTA LINHA É CRÍTICA PARA OS ACENTOS
+        };
+
         window.addEventListener("load", (event) => {
             const ruffle = window.RufflePlayer.newest();
             const player = ruffle.createPlayer();
             const container = document.getElementById("container");
             container.appendChild(player);
 
-            // CONFIGURAÇÃO DO JOGO - CORRIGIDA
             player.load({
-                url: "00000003.swf", // O ficheiro principal
-
-                // Configurações críticas para carregar os recursos externos
+                url: "00000003.swf", 
                 allowScriptAccess: true,
-                allowNetworking: "all", // Permite que o SWF comunique com os ficheiros XML/Imagens
-                
-                // Configurações visuais adicionais
-                quality: "best", // Melhora a qualidade das imagens
-                scale: "showAll", // Ajusta a imagem mantendo a proporção
-                wmode: "direct", // Pode ajudar na performance e renderização
-
-                // Opções que já tinhas
+                allowNetworking: "all", 
+                quality: "best", 
+                scale: "showAll", 
+                wmode: "direct", 
                 autoplay: "on",
                 unmuteOverlay: "hidden"
             });
         });
     </script>
-
 </body>
 </html>
+
