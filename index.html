@@ -2,12 +2,9 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8" />
-    <title>Simulador de Avarias Intel - Versão Corrigida</title>
-
+    <title>Simulador de Avarias Intel</title>
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-
     <style>
-        /* Define um fundo preto e remove as margens */
         body {
             background: #000;
             margin: 0;
@@ -19,12 +16,10 @@
             overflow: hidden;
         }
         #container > * {
-            width: 100vw;  /* Usa 100% da largura da janela */
-            height: 100vh; /* Usa 100% da altura da janela */
-            object-fit: contain; /* Mantém a imagem nítida sem cortar nada */
+            width: 100vw;  
+            height: 100vh; 
+            object-fit: contain;
         }
-
-        /* Garante que o player do Ruffle em si preenche o contentor, mantendo a proporção */
         #container > * {
             max-width: 100%;
             max-height: 100%;
@@ -40,11 +35,9 @@
 
     <script>
         window.RufflePlayer = window.RufflePlayer || {};
-        
-        // Esta é a configuração global para forçar a compatibilidade de carateres
         window.RufflePlayer.config = {
             "forceScale": true,
-            "forceCodePage": true, // <--- ESTA LINHA É CRÍTICA PARA OS ACENTOS
+            "forceCodePage": true, //
         };
 
         window.addEventListener("load", (event) => {
@@ -67,5 +60,3 @@
     </script>
 </body>
 </html>
-
-
